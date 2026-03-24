@@ -87,11 +87,5 @@ MONGO_URI=your_mongodb_uri
 
 ---
 
-##  Notes
-
-* Do not push `.env` files to GitHub
-* Use environment variables in production
-
----
 
 
