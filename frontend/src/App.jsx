@@ -35,13 +35,13 @@ export default function App() {
     {
       id: '1',
       type: 'inputNode',
-      position: isMobile ? { x: 0, y: 0 } : { x: 100, y: 200 },
+      position: isMobile ? { x: 20, y: 20 } : { x: 100, y: 200 },
       data: { prompt, setPrompt, isMobile }
     },
     {
       id: '2',
       type: 'resultNode',
-      position: isMobile ? { x: 0, y: 350 } : { x: 550, y: 200 },
+      position: isMobile ? { x: 20, y: 350 } : { x: 550, y: 200 },
       data: { result, loading, isMobile }
     }
   ]
@@ -74,7 +74,7 @@ export default function App() {
     setSaving(true)
     try {
       await saveData(prompt, result)
-    toast.success("Saved SuccessFully")
+      toast.success("Saved Successfully")
       setPrompt('')
       setResult('')
     } catch (err) {
@@ -85,7 +85,7 @@ export default function App() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-[#0f0c29]">
+    <div className="h-[100dvh] flex flex-col bg-[#0f0c29]">
       <Toaster position="top-right" />
       <Navbar />
 
@@ -100,25 +100,29 @@ export default function App() {
           minZoom={0.3}
         >
           <Background color="#a855f7" gap={24} size={0.5} />
-          <Controls position={isMobile ? 'top-right' : 'bottom-left'} className="border-none shadow-xl" />
+          <Controls
+            position={isMobile ? 'top-right' : 'bottom-left'}
+            className="border-none shadow-xl"
+          />
         </ReactFlow>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-row w-[92%] sm:w-auto gap-3 sm:gap-4 z-10">
+        {/* ✅ Fixed Buttons (Mobile Safe) */}
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex flex-row w-[92%] sm:w-auto gap-3 sm:gap-4 z-50">
           <button
             onClick={handleRunFlow}
             disabled={loading}
-            className="flex-1 sm:flex-none px-3 sm:px-6 py-3 rounded-xl font-bold text-white text-xs sm:text-sm tracking-wider sm:tracking-widest bg-[linear-gradient(135deg,#00f2fe,#4facfe,#a855f7)] hover:opacity-90 transition disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
+            className="flex-1 sm:flex-none px-4 sm:px-6 py-3 rounded-xl font-bold text-white text-sm tracking-wide bg-[linear-gradient(135deg,#00f2fe,#4facfe,#a855f7)] hover:opacity-90 transition disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
           >
-            <FaPlay size={12} />
+            <FaPlay size={14} />
             {loading ? 'RUNNING...' : 'RUN'}
           </button>
 
           <button
             onClick={handleSave}
             disabled={saving || !result}
-            className="flex-1 sm:flex-none px-3 sm:px-6 py-3 rounded-xl font-bold text-white text-xs sm:text-sm tracking-wider sm:tracking-widest bg-[linear-gradient(135deg,#ec4899,#a855f7)] hover:opacity-90 transition disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
+            className="flex-1 sm:flex-none px-4 sm:px-6 py-3 rounded-xl font-bold text-white text-sm tracking-wide bg-[linear-gradient(135deg,#ec4899,#a855f7)] hover:opacity-90 transition disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
           >
-            <FaSave size={12} />
+            <FaSave size={14} />
             {saving ? 'SAVING...' : 'SAVE'}
           </button>
         </div>
