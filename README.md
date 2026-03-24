@@ -14,7 +14,7 @@ Users can ask AI-based questions, save responses..
 
 ##  Tech Stack
 
-* Frontend: React (Vite)
+* Frontend: React-Flow (Vite)
 * Backend: Node.js + Express
 * Database: MongoDB
 * API:  AI MODEL USE OPENROUTER/AUTO
